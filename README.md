@@ -1,6 +1,6 @@
 # Catharsis
 
-Catharsis come as a web application that puts at the users' disposal tickets for theater shows taking place around them. 
+Catharsis comes as a web application that puts at the users' disposal tickets for theater shows taking place around them. 
 
 ## Description
 
