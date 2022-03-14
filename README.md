@@ -21,3 +21,7 @@ Project was created using the following:
 * ![_alt_text_](https://img.shields.io/badge/ReactJS-v17.0.2-61DAFB?style=for-the-badge&logo=React)
 * ![_alt_text_](https://img.shields.io/badge/NodeJS-v12.0.0-339933?style=for-the-badge&logo=nodedotjs&color=for-the-badge=#000000) 
 * ![_alt_text_](https://img.shields.io/badge/mysql-v8.0-4479A1?style=for-the-badge&logo=mysql)
+
+## Wireframe
+
+https://www.figma.com/file/gBYdw4LE6SLs8G8E1hGTFZ/Single-Event-Page?node-id=0%3A1
