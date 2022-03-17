@@ -1,6 +1,9 @@
-# Catharsis
+# Catharsis 
+
+<img src="https://user-images.githubusercontent.com/69719591/158774688-78e2a450-bba1-4715-a6e5-1640bc6ff08c.png" width="150" height="150">
 
 Catharsis comes as a web application that puts at the users' disposal tickets for theater shows taking place around them. 
+
 
 ## Description
 
