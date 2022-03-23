@@ -21,9 +21,9 @@ The methods of payment are specified at the top of the page, in two different cu
 Project was created using the following: 
  
 
-* ![_alt_text_](https://img.shields.io/badge/ReactJS-v17.0.2-61DAFB?style=for-the-badge&logo=React)
-* ![_alt_text_](https://img.shields.io/badge/NodeJS-v12.0.0-339933?style=for-the-badge&logo=nodedotjs&color=for-the-badge=#000000) 
-* ![_alt_text_](https://img.shields.io/badge/mysql-v8.0-4479A1?style=for-the-badge&logo=mysql)
+![_alt_text_](https://img.shields.io/badge/ReactJS-v17.0.2-61DAFB?style=or-the-badge&logo=React)
+![_alt_text_](https://img.shields.io/badge/NodeJS-v12.0.0-339933?style=or-the-badge&logo=nodedotjs&color=for-the-badge=#000000) 
+![_alt_text_](https://img.shields.io/badge/Mysql-v8.0-4479A1?style=or-the-badge&logo=Mysql)
 
 ## Wireframe
 
