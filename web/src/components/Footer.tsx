@@ -4,7 +4,7 @@ import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 export function Footer() {
     const footerItems = ["Catharsis © 2022", "Contact", "Social"];
     return (
-        <div style={{ marginTop: 10, marginBottom: 10, position: "fixed", bottom: 0, width: "100%" }}>
+        <div style={{ marginTop: 10, marginBottom: 10, bottom: 0, width: "100%" }}>
             <hr />
             <div style={{ display: 'flex', flexDirection: 'row' }}>
                 {footerItems.map(item => <span key={item} onClick={() => { }} style={{ marginLeft: 20, cursor: "pointer" }}>{item}</span>)}
