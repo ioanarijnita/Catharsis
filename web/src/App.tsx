@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import './App.css';
 import { EventPage } from './pages/event-page';
+import { LocationsPage } from './pages/locations-page';
 import { MainPage } from './pages/main-page';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage></MainPage>}> </Route>
         <Route path="/events" element={<EventPage></EventPage>}></Route>
+        <Route path="/locations" element={<LocationsPage></LocationsPage>}></Route>
       </Routes>
     </BrowserRouter>
   );
