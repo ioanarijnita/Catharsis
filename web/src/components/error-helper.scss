@@ -1,0 +1,16 @@
+.helper {
+    display: flex;
+    position: relative;
+    right: 10px; 
+}
+
+.error-image {
+    align-self: center;
+    margin-right: 6px;
+    margin-left: 10px;
+}
+
+.error-text {
+    color: red;
+    font-size: 13px;
+}

@@ -1,0 +1,25 @@
+.box-container {
+    display: flex; 
+    justify-content: center;
+}
+
+.content-box {
+    display: flex;
+    flex-direction: column;
+    margin: 32px 48px 48px 48px;
+}
+
+.header {
+    font-size: 34px;
+    text-align: center;
+}
+
+.details {
+    font-size: 17px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.hyperlink-text {
+    color: #2196f3;
+}

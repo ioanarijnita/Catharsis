@@ -1,0 +1,80 @@
+.container {
+    display: flex; 
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+.contentBox {
+    display: flex;
+    flex-direction: column;
+    margin: 32px 49px 40px 50px;
+}
+
+.title {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.detail {
+    word-break: break-word;
+    font-size: 15px;
+}
+
+.password {
+    font-size: 13px;
+}
+
+.error-password li:first-child {
+    margin-top: -10px;
+}
+
+.password li:first-child {
+    margin-top: -20px;
+}
+
+.error-password {
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+.requirement {
+    font-size: 13px;
+}
+
+li {
+    list-style: none;
+    margin-top: -16px;
+    margin-bottom: -16px;
+}
+
+li::before {
+    content: "\2022";
+    font-size: 30px;
+    position: relative;
+    top: 5px;
+    margin-right: 8px;
+    font-family: initial;
+}
+
+li.main-li::before {
+    color: #2196f3;
+}
+
+.gray-li {
+    color: gray;
+}
+
+.error-li {
+    color: red;
+}
+
+.policy {
+    font-size: 13px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+.reference {
+    text-decoration: none;
+    color: #2196f3;
+}

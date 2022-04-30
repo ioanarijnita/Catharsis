@@ -1,4 +1,4 @@
-import { IconButton, InputAdornment, TextField } from '@mui/material';
+import { Button, IconButton, InputAdornment, TextField } from '@mui/material';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/header';
 import SearchIcon from '@mui/icons-material/Search';
@@ -6,6 +6,8 @@ import { EventType, useEventService } from '../contexts/events-context';
 import { useEffect, useState } from 'react';
 import { updateOnChangeText } from '../hooks/utils';
 import { EventItem } from '../components/event-item';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 export function MainPage() {
     const { getEvents, eventList } = useEventService();
@@ -16,6 +18,7 @@ export function MainPage() {
         value: "",
     });
     const [inputValue] = searchInput;
+    const [value, onChange] = useState(new Date());
     const onSearch = () => {
         console.log(inputValue.value, searchedValues, "Faust" === inputValue.value)
         const data = eventList.filter(event => event.title === inputValue.value);
@@ -32,7 +35,7 @@ export function MainPage() {
             <br /><br /><br />
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <TextField
-                    style={{ width: "40%" }}
+                    style={{ width: 400 }}
                     label="Search by events or locations"
                     {...updateOnChangeText(searchInput, "value")}
                     InputProps={{
@@ -48,6 +51,10 @@ export function MainPage() {
             </div>
             <div style={{ display: "flex", flexWrap: "wrap" }}>
                 {searchedValues && searchedValues.map(event => <EventItem {...event} image={event.url.image} />)}
+            </div>
+            <div style={{ padding: 50, display: "flex", flexDirection: "column", marginTop: 25, borderRadius: 14, marginLeft: 25 }}>
+                <Calendar onChange={onChange} value={value} locale="en-US" />
+                <Button variant="contained" style={{ width: 150, marginTop: 15 }}>CHECK EVENTS</Button>
             </div>
             <Footer />
         </div>
