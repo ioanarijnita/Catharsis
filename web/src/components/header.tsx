@@ -13,7 +13,7 @@ export function Header() {
         <p style={{ cursor: "pointer" }} onClick={() => nav("/")}>
             Catharsis
         </p>
-        <p style={{ cursor: "pointer" }}>
+        <p style={{ cursor: "pointer" }} onClick = {() =>nav("/events")}>
             Events
         </p>
 
