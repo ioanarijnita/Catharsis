@@ -4,50 +4,51 @@ import { Header } from '../components/header';
 import SearchIcon from '@mui/icons-material/Search';
 import { EventType, useEventService } from '../contexts/events-context';
 import { useEffect, useState } from 'react';
-import { updateOnChangeText } from '../hooks/utils';
 import { EventItem } from '../components/event-item';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import { useForm } from 'react-hook-form';
 
 export function MainPage() {
     const { getEvents, eventList } = useEventService();
     const [searchedValues, setSearchedValues] = useState<EventType[]>();
-    const searchInput = useState<{
-        value: string,
-    }>({
-        value: "",
-    });
-    const [inputValue] = searchInput;
     const [value, onChange] = useState(new Date());
-    const onSearch = () => {
-        console.log(inputValue.value, searchedValues, "Faust" === inputValue.value)
-        const data = eventList.filter(event => event.title === inputValue.value);
-        console.log(eventList);
-        setSearchedValues(data);
-    }
+    const { register, handleSubmit, getValues, watch } = useForm<{ searchInput: string }>();
 
     useEffect(() => {
         getEvents();
     }, [])
+
+    useEffect(() => {
+        const data = eventList.filter(event => event.title === getValues("searchInput"));
+        setSearchedValues(data);
+    }, [watch("searchInput")])
+
+    const onSubmit = () => {
+        const data = eventList.filter(event => event.title === getValues("searchInput"));
+        setSearchedValues(data);
+    }
     return (
         <div>
             <Header />
             <br /><br /><br />
             <div style={{ display: "flex", justifyContent: "center" }}>
-                <TextField
-                    style={{ width: 400 }}
-                    label="Search by events or locations"
-                    {...updateOnChangeText(searchInput, "value")}
-                    InputProps={{
-                        endAdornment: (
-                            <InputAdornment position="end">
-                                <IconButton onClick={onSearch}>
-                                    <SearchIcon />
-                                </IconButton>
-                            </InputAdornment>
-                        )
-                    }}
-                />
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <TextField
+                        style={{ width: 400 }}
+                        label="Search by events or locations"
+                        {...register("searchInput")}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton type="submit">
+                                        <SearchIcon />
+                                    </IconButton>
+                                </InputAdornment>
+                            )
+                        }}
+                    />
+                </form>
             </div>
             <div style={{ display: "flex", flexWrap: "wrap" }}>
                 {searchedValues && searchedValues.map(event => <EventItem {...event} image={event.url.image} />)}
