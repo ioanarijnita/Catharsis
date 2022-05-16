@@ -36,7 +36,7 @@ export function MainPage() {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <TextField
                         style={{ width: 400 }}
-                        label="Search by events or locations"
+                        label="Search by events"
                         {...register("searchInput")}
                         InputProps={{
                             endAdornment: (
