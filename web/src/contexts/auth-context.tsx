@@ -16,9 +16,9 @@ function useAuth() {
     const [loginInfo, setLoginInfo] = useState<User>();
     const nav = useNavigate();
 
-    const signup = async (user: User) => {
+    const signup = (user: User) => {
         try {
-            await StoreDataService.create(user);
+            StoreDataService.create(user);
             nav("/login");
         } catch (e) {
             console.log(e)
