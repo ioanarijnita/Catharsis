@@ -17,6 +17,7 @@ export function EventPage() {
             <br></br><br></br><br></br><br></br>
             <div style={{ display: "flex", flexWrap: "wrap" }}>
                 {event.eventList && event.eventList.map((item) => <EventItem
+                    key={item.title}
                     image={item.url.image}
                     title={item.title}
                     reviewsCount={item.reviewsCount}
@@ -25,7 +26,6 @@ export function EventPage() {
                 ></EventItem>)
                 }
             </div>
-
             <Footer></Footer>
         </div>
     );
