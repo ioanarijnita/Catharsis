@@ -16,7 +16,9 @@ exports.create = (req, res) => {
         description: req.body.description,
         price: req.body.price,
         image: req.body.imageName,
-        id: req.body.id
+        id: req.body.id,
+        location: req.body.location,
+        date: req.body.date
     };
 
     Event.create(event)
