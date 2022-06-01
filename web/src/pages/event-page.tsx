@@ -26,6 +26,8 @@ export function EventPage() {
                     reviewsCount={item.reviewsCount}
                     description={item.description}
                     price={item.price}
+                    location = {item.location}
+                    date = {item.date}
                 ></EventItem>)
                 }
             </div>
