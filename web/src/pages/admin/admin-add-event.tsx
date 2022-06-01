@@ -1,4 +1,4 @@
-import { Button, TextField, Select } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import Alert from '@mui/material/Alert';
 import { EventType } from '../../models/event';
@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import EventDataService from "../../services/event";
 import { AxiosResponse } from 'axios';
 import { useAuthService } from '../../contexts/auth-context';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 export function AdminAddEvent() {
 
@@ -15,11 +17,14 @@ export function AdminAddEvent() {
         description: "",
         price: 0,
         reviewsCount: 0,
-        title: ""
+        title: "",
+        date: new Date(),
+        location: ""
     })
     const navigate = useNavigate();
     const inputRef = React.useRef<HTMLInputElement>(null)
-    const {loginInfo} = useAuthService();
+    const { loginInfo } = useAuthService();
+    const [value, onChange] = useState(new Date());
 
     function showname() {
         setEvent({ ...event, imageName: inputRef.current?.files![0].name! })
@@ -66,6 +71,17 @@ export function AdminAddEvent() {
             /><br />
             <TextField
                 style={{ width: 180 }}
+                value={event.location}
+                onChange={(e: any) => {
+                    setEvent({ ...event, location: e.target.value })
+                }
+                }
+                label="LOCATION"
+                variant="standard"
+                InputLabelProps={{ style: { fontSize: 10 } }}
+            /><br />
+            <TextField
+                style={{ width: 180 }}
                 value={event.price}
                 onChange={(e: any) => {
                     setEvent({ ...event, price: e.target.value })
@@ -75,14 +91,16 @@ export function AdminAddEvent() {
                 variant="standard"
                 InputLabelProps={{ style: { fontSize: 10 } }}
             /><br />
+            <span>Select date for the event</span>
+            <Calendar onChange={onChange} value={value} locale="en-US" />
+            <br />
             {showAlert ? <AlertShowing></AlertShowing> : <></>}
-            <div style={{ display: 'flex', flexDirection: 'row',  }}>
+            <div style={{ display: 'flex', flexDirection: 'row', }}>
                 <Button onClick={() => {
                     EventDataService.findAll().then((res: AxiosResponse<any, any>) => {
                         console.log(res.data.length)
-                        EventDataService.create({...event, id: res.data.length}).then(() => setEvent({price: 0, description: "", imageName: "", reviewsCount: 0, title: "",}))
+                        EventDataService.create({ ...event, id: res.data.length, date: value }).then(() => setEvent({ price: 0, description: "", imageName: "", reviewsCount: 0, title: "", date: new Date(), location: "" }))
                     })
-                    // EventDataService.create(event).then(() => setEvent({price: 0, description: "", imageName: "", reviewsCount: 0, title: ""}))
                 }} variant="outlined" style={{ marginRight: 50, backgroundColor: 'black', color: 'white' }}>ADD EVENT</Button>
                 <Button variant="outlined" style={{ backgroundColor: 'black', color: 'white' }} onClick={() => navigate("/")}>GO TO MAIN PAGE</Button>
             </div>

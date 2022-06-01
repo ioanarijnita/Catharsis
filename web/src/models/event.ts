@@ -4,5 +4,7 @@ export interface EventType {
     title: string,
     reviewsCount: number,
     description: string,
-    price: number
+    price: number,
+    date: Date,
+    location: string
 }

@@ -1,6 +1,4 @@
 import { createContext, useContext, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import faust from "../assets/faust.png"
 import EventDataService from "../services/event";
 
 export type EventType = {
@@ -8,7 +6,9 @@ export type EventType = {
     title: string,
     reviewsCount: number,
     description: string,
-    price: number
+    price: number,
+    date: Date,
+    location: string
 }
 
 type EventsContext = ReturnType<typeof useEventsService>
@@ -19,23 +19,13 @@ export function useEventService() {
 }
 
 function useEventsService() {
-    const eventObject: EventType = {
-        image: faust,
-        title: "Faust",
-        reviewsCount: 23,
-        description: "Ceva misto la Faust",
-        price: 150
-    };
-    const [eventList, setEventList] = useState<typeof eventObject[]>([]);
-
+    const [eventList, setEventList] = useState<EventType[]>([]);
 
     const getEvents = () => {
         EventDataService.findAll().then((res) => {
             setEventList(res.data);
         })
-        // return eventsItems;
     }
-    const nav = useNavigate();
 
     return useMemo(() => ({
         getEvents,
