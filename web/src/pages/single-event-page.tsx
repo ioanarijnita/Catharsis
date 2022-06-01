@@ -2,7 +2,7 @@ import Rating from "@mui/material/Rating";
 import { useEffect, useState } from "react";
 import { Header } from "../components/header";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { EventType, useEventService } from "../contexts/events-context";
 import moment from "moment";
 import Button from "@mui/material/Button";
@@ -20,6 +20,7 @@ export function SingleEvent() {
     const { getEvents } = useEventService();
     const [open, setOpen] = useState(false);
     const [newItem, setNewItem] = useState<EventType>();
+    const nav = useNavigate();
 
     const handleClick = () => {
         setOpen(true);
@@ -43,6 +44,7 @@ export function SingleEvent() {
         }
 
     }, [event.reviews])
+
     return <div>
         <Header></Header>
         <div style={{ margin: "32px 32px 32px 32px", backgroundColor: "white", paddingTop: "1%", paddingBottom: "1%", display: "flex", flexDirection: "row" }}>
@@ -71,14 +73,13 @@ export function SingleEvent() {
             <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", flexGrow: 1 }}>
                 <img src={event.image} style={{}}></img>
             </div>
-
+            <Button onClick={() => nav("plan", { state: event })} variant="contained" style={{ alignSelf: "flex-end", marginRight: 10 }}>BUY TICKETS</Button>
         </div>
-
         <div style={{ margin: "32px 32px 32px 32px", backgroundColor: "white", paddingTop: "1%", paddingBottom: "1%" }}>
             <div style={{ marginLeft: 32, marginRight: 31, display: "flex", flexDirection: "column" }}>
-                <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                <div style={{ flexDirection: "row", justifyContent: "space-between" }}>
                     <p>Review section</p>
-                    {loginInfo?.email && <Button variant="contained" onClick={() => setAddReview("")}>ADD</Button>}
+                    {loginInfo?.email && <Button size="small" variant="contained" onClick={() => setAddReview("")}>ADD</Button>}
                 </div>
                 {addReview !== undefined && <div style={{ display: "flex", flexDirection: "row", marginTop: 20 }}>
                     <TextField

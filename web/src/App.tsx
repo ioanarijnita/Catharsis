@@ -5,6 +5,7 @@ import { AuthContextProvider, useAuthService } from './contexts/auth-context';
 import { EventContextProvider } from './contexts/events-context';
 import { User } from './models/user';
 import { AdminAddEvent } from './pages/admin/admin-add-event';
+import { RoomPlan } from './pages/room-plan';
 import { EventPage } from './pages/event-page';
 import { LocationsPage } from './pages/locations-page';
 import { LoginPage } from './pages/login';
@@ -57,6 +58,7 @@ function App() {
           <Route path="/locations" element={<LocationsPage></LocationsPage>}></Route>
           <Route path="/login" element={<LoginPage></LoginPage>}></Route>
           <Route path="/signup" element={<SignUpPage></SignUpPage>}></Route>
+          <Route path="/plan" element={<RoomPlan></RoomPlan>}></Route>
           <Route path="/admin" element={<AdminAddEvent></AdminAddEvent>}></Route>
         </Routes>
       </ApplyContext>
