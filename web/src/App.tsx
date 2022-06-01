@@ -10,6 +10,7 @@ import { LocationsPage } from './pages/locations-page';
 import { LoginPage } from './pages/login';
 import { MainPage } from './pages/main-page';
 import { SignUpPage } from './pages/signup';
+import { SingleEvent } from './pages/single-event-page';
 
 async function loadLoginInfo(setUserState: (response: User) => void) {
   try {
@@ -52,6 +53,7 @@ function App() {
         <Routes>
           <Route index element={<MainPage></MainPage>} />
           <Route path="/events" element={<EventPage></EventPage>}></Route>
+          <Route path="/event" element={<SingleEvent></SingleEvent  >}></Route>
           <Route path="/locations" element={<LocationsPage></LocationsPage>}></Route>
           <Route path="/login" element={<LoginPage></LoginPage>}></Route>
           <Route path="/signup" element={<SignUpPage></SignUpPage>}></Route>

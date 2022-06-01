@@ -8,6 +8,9 @@ class EventDataService {
     findAll() {
         return http.get("/events");
     }
+    edit(data: EventType) {
+        return http.put(`/events/${data.id}`, data);
+    }
 }
 
 export default new EventDataService();

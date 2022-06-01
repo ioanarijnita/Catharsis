@@ -13,13 +13,19 @@ export function AdminAddEvent() {
 
     const [showAlert, setShowAlert] = useState(0);
     const [event, setEvent] = useState<EventType>({
-        imageName: "",
         description: "",
         price: 0,
         reviewsCount: 0,
         title: "",
         date: new Date(),
-        location: ""
+        location: "",
+        additionalInformation: "",
+        image: "",
+        reviews: `[{}]`,
+        runnigTime: "",
+        venueInformation: "",
+        id: 0,
+        rating: 0
     })
     const navigate = useNavigate();
     const inputRef = React.useRef<HTMLInputElement>(null)
@@ -27,7 +33,7 @@ export function AdminAddEvent() {
     const [value, onChange] = useState(new Date());
 
     function showname() {
-        setEvent({ ...event, imageName: inputRef.current?.files![0].name! })
+        setEvent({ ...event, image: inputRef.current?.files![0].name! })
     }
 
     function AlertShowing() {
@@ -45,7 +51,7 @@ export function AdminAddEvent() {
                 <input style={{ position: 'absolute', left: 50, opacity: 0 }} type="file" className="form-control" name="upload_file" id="fileInput" ref={inputRef} onChange={() => showname()} />
             </Button>
             <br />
-            <text style={{ fontSize: 12 }}>{event.imageName}</text>
+            <text style={{ fontSize: 12 }}>{event.image}</text>
             <br />
             <TextField
                 style={{ width: 180 }}
@@ -91,6 +97,39 @@ export function AdminAddEvent() {
                 variant="standard"
                 InputLabelProps={{ style: { fontSize: 10 } }}
             /><br />
+            <TextField
+                style={{ width: 180 }}
+                value={event.runnigTime}
+                onChange={(e: any) => {
+                    setEvent({ ...event, runnigTime: e.target.value })
+                }
+                }
+                label="RUNNING TIME"
+                variant="standard"
+                InputLabelProps={{ style: { fontSize: 10 } }}
+            /><br />
+            <TextField
+                style={{ width: 180 }}
+                value={event.venueInformation}
+                onChange={(e: any) => {
+                    setEvent({ ...event, venueInformation: e.target.value })
+                }
+                }
+                label="VENUE INFORMATION"
+                variant="standard"
+                InputLabelProps={{ style: { fontSize: 10 } }}
+            /><br />
+            <TextField
+                style={{ width: 180 }}
+                value={event.additionalInformation}
+                onChange={(e: any) => {
+                    setEvent({ ...event, additionalInformation: e.target.value })
+                }
+                }
+                label="ADDITIONAL INFORMATION"
+                variant="standard"
+                InputLabelProps={{ style: { fontSize: 10 } }}
+            /><br />
             <span>Select date for the event</span>
             <Calendar onChange={onChange} value={value} locale="en-US" />
             <br />
@@ -98,8 +137,7 @@ export function AdminAddEvent() {
             <div style={{ display: 'flex', flexDirection: 'row', }}>
                 <Button onClick={() => {
                     EventDataService.findAll().then((res: AxiosResponse<any, any>) => {
-                        console.log(res.data.length)
-                        EventDataService.create({ ...event, id: res.data.length, date: value }).then(() => setEvent({ price: 0, description: "", imageName: "", reviewsCount: 0, title: "", date: new Date(), location: "" }))
+                        EventDataService.create({ ...event, id: res.data.length, date: value }).then(() => setEvent({ price: 0, description: "", image: "", reviewsCount: 0, title: "", date: new Date(), location: "", additionalInformation: "", id: 0, venueInformation: "", runnigTime: "", reviews: `[{}]`, rating: 0 }))
                     })
                 }} variant="outlined" style={{ marginRight: 50, backgroundColor: 'black', color: 'white' }}>ADD EVENT</Button>
                 <Button variant="outlined" style={{ backgroundColor: 'black', color: 'white' }} onClick={() => navigate("/")}>GO TO MAIN PAGE</Button>

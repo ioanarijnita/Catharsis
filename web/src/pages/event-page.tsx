@@ -20,14 +20,8 @@ export function EventPage() {
             <br></br><br></br><br></br><br></br>
             <div style={{ display: "flex", flexWrap: "wrap" }}>
                 {(events ? events : event.eventList).map((item) => <EventItem
-                    key={item.title}
-                    image={item.image}
-                    title={item.title}
-                    reviewsCount={item.reviewsCount}
-                    description={item.description}
-                    price={item.price}
-                    location = {item.location}
-                    date = {item.date}
+                    {...item}
+                    key={item.id}
                 ></EventItem>)
                 }
             </div>

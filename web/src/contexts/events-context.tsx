@@ -8,7 +8,13 @@ export type EventType = {
     description: string,
     price: number,
     date: Date,
-    location: string
+    location: string,
+    id?: number,
+    additionalInformation: string,
+    runnigTime: string,
+    venueInformation: string,
+    reviews: string,
+    rating: number
 }
 
 type EventsContext = ReturnType<typeof useEventsService>
