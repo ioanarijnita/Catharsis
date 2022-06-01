@@ -18,6 +18,12 @@ module.exports = (sequelize, Sequelize) => {
         },
         image: {
             type: Sequelize.STRING 
+        },
+        location: {
+            type: Sequelize.STRING
+        },
+        date: {
+            type: Sequelize.DATE
         }
     });
 
