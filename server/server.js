@@ -13,6 +13,7 @@ db.sequelize.sync({ force: true }).then(() => {
 });
 
 require("./app/routes/users.routes")(app);
+require("./app/routes/events.routes")(app);
 
 // simple route
 app.get("/", (req, res) => {
