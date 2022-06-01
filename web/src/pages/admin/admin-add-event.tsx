@@ -1,0 +1,91 @@
+import { Button, TextField, Select } from '@mui/material';
+import React, { useState } from 'react';
+import Alert from '@mui/material/Alert';
+import { EventType } from '../../models/event';
+import { useNavigate } from 'react-router-dom';
+import EventDataService from "../../services/event";
+import { AxiosResponse } from 'axios';
+import { useAuthService } from '../../contexts/auth-context';
+
+export function AdminAddEvent() {
+
+    const [showAlert, setShowAlert] = useState(0);
+    const [event, setEvent] = useState<EventType>({
+        imageName: "",
+        description: "",
+        price: 0,
+        reviewsCount: 0,
+        title: ""
+    })
+    const navigate = useNavigate();
+    const inputRef = React.useRef<HTMLInputElement>(null)
+    const {loginInfo} = useAuthService();
+
+    function showname() {
+        setEvent({ ...event, imageName: inputRef.current?.files![0].name! })
+    }
+
+    function AlertShowing() {
+        return (
+            <Alert variant="outlined" onClose={() => setShowAlert(0)} severity={showAlert === 1 ? "success" : "error"}>{showAlert === 1 ? "Item added successfully!" : "Please fill in all the fields!"}</Alert>
+        );
+    }
+
+    if (loginInfo?.email !== "admin@admin.com") return <></>;
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', marginLeft: 50, marginTop: 50 }}>
+            <Button
+                variant="contained"
+                style={{ width: 200, fontSize: 13 }}>Upload Image
+                <input style={{ position: 'absolute', left: 50, opacity: 0 }} type="file" className="form-control" name="upload_file" id="fileInput" ref={inputRef} onChange={() => showname()} />
+            </Button>
+            <br />
+            <text style={{ fontSize: 12 }}>{event.imageName}</text>
+            <br />
+            <TextField
+                style={{ width: 180 }}
+                value={event.title}
+                onChange={(e: any) => {
+                    setEvent({ ...event, title: e.target.value })
+                }
+                }
+                label="TITLE"
+                variant="standard"
+                InputLabelProps={{ style: { fontSize: 10 } }}
+            /><br />
+            <TextField
+                style={{ width: 180 }}
+                value={event.description}
+                onChange={(e: any) => {
+                    setEvent({ ...event, description: e.target.value })
+                }
+                }
+                label="DESCRIPTION"
+                variant="standard"
+                InputLabelProps={{ style: { fontSize: 10 } }}
+            /><br />
+            <TextField
+                style={{ width: 180 }}
+                value={event.price}
+                onChange={(e: any) => {
+                    setEvent({ ...event, price: e.target.value })
+                }
+                }
+                label="PRICE"
+                variant="standard"
+                InputLabelProps={{ style: { fontSize: 10 } }}
+            /><br />
+            {showAlert ? <AlertShowing></AlertShowing> : <></>}
+            <div style={{ display: 'flex', flexDirection: 'row',  }}>
+                <Button onClick={() => {
+                    EventDataService.findAll().then((res: AxiosResponse<any, any>) => {
+                        console.log(res.data.length)
+                        EventDataService.create({...event, id: res.data.length}).then(() => setEvent({price: 0, description: "", imageName: "", reviewsCount: 0, title: "",}))
+                    })
+                    // EventDataService.create(event).then(() => setEvent({price: 0, description: "", imageName: "", reviewsCount: 0, title: ""}))
+                }} variant="outlined" style={{ marginRight: 50, backgroundColor: 'black', color: 'white' }}>ADD EVENT</Button>
+                <Button variant="outlined" style={{ backgroundColor: 'black', color: 'white' }} onClick={() => navigate("/")}>GO TO MAIN PAGE</Button>
+            </div>
+        </div>
+    );
+}

@@ -8,7 +8,7 @@ export function Footer() {
             <hr />
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-around" }}>
                 {footerItems.map(item => <span key={item} onClick={() => { }} style={{ marginLeft: 20, cursor: "pointer" }}>{item}</span>)}
-                <a href="https://www.facebook.com/profile.php?id=100009870003700"
+                <a href="https://www.facebook.com/"
                     className="facebook social"
                     style={{ color: "blue", marginLeft: 10 }}
                 >

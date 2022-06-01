@@ -15,10 +15,11 @@ export function useAuthService() {
 function useAuth() {
     const [loginInfo, setLoginInfo] = useState<User>();
     const nav = useNavigate();
-
-    const signup = (user: User) => {
+    const signup = async (user: User) => {
         try {
-            StoreDataService.create(user);
+            const users = await getUsers();
+            const newUser = {...user, id: users.length}
+            StoreDataService.create(newUser).then((res) => console.log("s:", res.data));
             nav("/login");
         } catch (e) {
             console.log(e)
@@ -31,7 +32,11 @@ function useAuth() {
             await StoreDataService.login({ ...user, userId: users.filter(dbUsers => dbUsers.email === user.email).map(u => u.id).pop() });
             setLoginInfo(user);
             localStorage.setItem("userPayload", JSON.stringify(user));
-            nav("/");
+            if (user.email !== "admin@admin.com") {
+                nav("/");
+            } else {
+                nav("/admin");
+            }
             return PasswordErrors.SUCCESS;
         } catch (e) {
             console.log(e);

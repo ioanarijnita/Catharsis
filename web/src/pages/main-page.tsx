@@ -20,12 +20,12 @@ export function MainPage() {
     }, [])
 
     useEffect(() => {
-        const data = eventList.filter(event => event.title === getValues("searchInput"));
+        const data = eventList.filter(event => event.title.toLocaleLowerCase().includes(getValues("searchInput").toLocaleLowerCase()));
         setSearchedValues(data);
     }, [watch("searchInput")])
 
     const onSubmit = () => {
-        const data = eventList.filter(event => event.title === getValues("searchInput"));
+        const data = eventList.filter(event => event.title.toLocaleLowerCase().includes(getValues("searchInput").toLocaleLowerCase()));
         setSearchedValues(data);
     }
     return (
@@ -51,7 +51,7 @@ export function MainPage() {
                 </form>
             </div>
             <div style={{ display: "flex", flexWrap: "wrap" }}>
-                {searchedValues && searchedValues.map(event => <EventItem {...event} image={event.url.image} />)}
+                {searchedValues && searchedValues.map(event => <EventItem {...event} />)}
             </div>
             <div style={{ padding: 50, display: "flex", flexDirection: "column", marginTop: 25, borderRadius: 14, marginLeft: 25 }}>
                 <Calendar onChange={onChange} value={value} locale="en-US" />

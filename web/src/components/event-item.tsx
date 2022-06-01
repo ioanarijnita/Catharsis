@@ -3,10 +3,9 @@ import React, { useState } from "react";
 
 export function EventItem(p: { image: string, title: string, reviewsCount: number, description: string, price: number }) {
     const [rating, setRating] = useState<number | null>();
-
     return (
         <Box boxShadow={4} style={{ marginLeft: 100, width: "22%", marginTop: 25 }} >
-            <img src={p.image} style={{ width: "100%" }}></img>
+            <img src={`./${p.image}`} style={{ width: "100%" }}></img>
             <div style={{ marginLeft: 10 }}>
                 <p>{p.title}</p>
                 <p style={{ display: "flex", alignItems: "center" }}>
