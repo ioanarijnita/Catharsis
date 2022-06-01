@@ -24,6 +24,21 @@ module.exports = (sequelize, Sequelize) => {
         },
         date: {
             type: Sequelize.DATE
+        },
+        additionalInformation: {
+            type: Sequelize.STRING
+        },
+        runningTime: {
+            type: Sequelize.STRING
+        },
+        venueInformation: {
+            type: Sequelize.STRING
+        },
+        reviews: {
+            type: Sequelize.STRING
+        },
+        rating: {
+            type: Sequelize.INTEGER
         }
     });
 
