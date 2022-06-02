@@ -12,6 +12,8 @@ import { LoginPage } from './pages/login';
 import { MainPage } from './pages/main-page';
 import { SignUpPage } from './pages/signup';
 import { SingleEvent } from './pages/single-event-page';
+import { AdminAddPlan } from './pages/admin/admin-add-plan';
+import { UserPlan } from './pages/user-plan';
 
 async function loadLoginInfo(setUserState: (response: User) => void) {
   try {
@@ -58,8 +60,9 @@ function App() {
           <Route path="/locations" element={<LocationsPage></LocationsPage>}></Route>
           <Route path="/login" element={<LoginPage></LoginPage>}></Route>
           <Route path="/signup" element={<SignUpPage></SignUpPage>}></Route>
-          <Route path="/plan" element={<RoomPlan></RoomPlan>}></Route>
+          <Route path="/event/plan" element={<UserPlan></UserPlan>}></Route>
           <Route path="/admin" element={<AdminAddEvent></AdminAddEvent>}></Route>
+          <Route path="/admin/plan" element={<AdminAddPlan></AdminAddPlan>}></Route>
         </Routes>
       </ApplyContext>
     </BrowserRouter>

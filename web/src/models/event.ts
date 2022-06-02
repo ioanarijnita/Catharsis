@@ -11,5 +11,6 @@ export type EventType = {
     runnigTime: string,
     venueInformation: string,
     reviews: string,
-    rating: number
+    rating: number,
+    plan: string
 }
