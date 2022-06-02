@@ -17,9 +17,8 @@ export function EventPage() {
     return (
         <div>
             <Header></Header>
-            <br></br><br></br><br></br><br></br>
             <div style={{ display: "flex", flexWrap: "wrap" }}>
-                {(events ? events : event.eventList).map((item) => <EventItem
+                {(events ? events : event.eventList)?.map((item) => <EventItem
                     {...item}
                     key={item.id}
                 ></EventItem>)

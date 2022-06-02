@@ -8,10 +8,15 @@ export function UserPlan() {
     const obj = JSON.parse(event.plan) as any;
     return <div>
         <Header />
-        <div style={{ margin: 30 }}>
-            <h4>{event.title}</h4>
+        <div style={{ margin: 20 }}>
+            <h2>Title: {event.title}</h2>
             {/* ts-ignore */}
-            <RoomPlan event={event} seats={JSON.parse(obj.data)} fullSeats={obj} rowLength={JSON.parse(obj.data)[0].length} id={JSON.parse(event.plan).id} />
+            <p style = {{display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                <span>Blue: <span style = {{color: "#2196f3"}}><b>Empty Seats</b></span></span>
+                <span>Green: <span style = {{color: "green"}}><b>Your Seats</b></span></span>
+                <span>Gray: <span style = {{color: "gray"}}><b>Taken Seats</b></span></span>
+            </p>
+            <RoomPlan isCheckout event={event} seats={JSON.parse(obj.data)} fullSeats={obj} rowLength={JSON.parse(obj.data)[0].length} id={JSON.parse(event.plan).id} />
         </div>
     </div>
 }

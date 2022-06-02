@@ -12,19 +12,17 @@ export function EventItem(p: EventType) {
             size="small"
             edge="start"
             color="inherit"
-            style={{ marginLeft: 100, marginTop: 25, borderRadius: 0 }}
+            style={{ marginLeft: 100, marginTop: 100, borderRadius: 35, marginBottom: 100 }}
             onClick={() => {
                 nav(`/event`, { state: p });
             }}
-        >
-            <Box boxShadow={4} >
-                <img src={p.image} style={{ width: "100%" }}></img>
+        >   
+            <Box boxShadow={4} style={{ width: 600, borderRadius: 35  }} >
+                <img src={p.image} style={{ width: 125 }}></img>
                 <div style={{ marginLeft: 10 }}>
                     <p><b>Title:</b> {p.title}</p>
-                    <p style={{ display: "flex", alignItems: "center" }}>
-                        <b>Rating:</b> {rating}
-                        {p.reviewsCount} reviews
-                    </p>
+                    <b>Rating:</b> {rating}
+                    {p.reviewsCount} reviews
                     <p><b>Description:</b> {p.description}</p>
                     <p><b>Location:</b> {p.location} </p>
                     <p><b>Date:</b> {moment(p.date).format("DD MMMM YYYY")} </p>

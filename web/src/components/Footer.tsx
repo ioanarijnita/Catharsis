@@ -1,20 +1,24 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons";
+import { useState } from "react";
+import { BottomNavigation, BottomNavigationAction } from "@mui/material";
+import CopyrightIcon from '@mui/icons-material/Copyright';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+import FacebookIcon from '@mui/icons-material/Facebook';
 
 export function Footer() {
-    const footerItems = ["Catharsis © 2022", "Contact"];
+    const [value, setValue] = useState(0);
+
     return (
-        <div style={{ marginTop: 10, marginBottom: 10, bottom: 0, width: "100%" }}>
-            <hr />
-            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-around" }}>
-                {footerItems.map(item => <span key={item} onClick={() => { }} style={{ marginLeft: 20, cursor: "pointer" }}>{item}</span>)}
-                <a href="https://www.facebook.com/"
-                    className="facebook social"
-                    style={{ color: "blue", marginLeft: 10 }}
-                >
-                    <FontAwesomeIcon icon={faFacebook} size="1x" color="#2196f3" />
-                </a>
-            </div>
-        </div>
+        <BottomNavigation
+            showLabels
+            style={{ backgroundColor: "#2196f3", width: "100%", justifyContent: "space-around", position: "sticky"  }}
+            value={value}
+            onChange={(event, newValue) => {
+                setValue(newValue);
+            }}
+        >
+            <BottomNavigationAction style={{ color: value === 0 ? "white" : "lightgray" }} label="Catharsis" icon={<CopyrightIcon />} />
+            <BottomNavigationAction style={{ color: value === 1 ? "white" : "lightgray" }} label="Contact" icon={<ContactPageIcon />} />
+            <BottomNavigationAction style={{ color: value === 2 ? "white" : "lightgray" }} label="Facebook" icon={<FacebookIcon />} />
+        </BottomNavigation>
     );
 }

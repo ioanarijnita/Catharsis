@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import EventDataService from "../services/event";
 import { useNavigate } from 'react-router';
+import Box from '@mui/material/Box';
 
 
-export function RoomPlan(p: { seats?: any, rowLength?: number, id?: number, fullSeats?: any, event?: any }) {
+export function RoomPlan(p: { seats?: any, rowLength?: number, id?: number, fullSeats?: any, event?: any, isCheckout?: boolean }) {
     const [loading, setLoading] = useState<boolean>();
     const [seats, setSeats] = useState<any>(p.seats!);
     const nav = useNavigate();
@@ -46,23 +47,22 @@ export function RoomPlan(p: { seats?: any, rowLength?: number, id?: number, full
 
     }
 
-    return <div>
-        <div style={{ marginTop: '100px' }}>
+    return <div style={{ display: "flex", flexDirection: "column" }}>
+        <Box boxShadow={4} style={{ borderRadius: 15, padding: 30, backgroundColor: "white", display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "center" }}>
+            <span style={{ marginLeft: 20, marginBottom: 20, fontWeight: "bold", fontSize: 18 }}>STAGE</span>
             <SeatPicker
                 addSeatCallback={addSeatCallbackContinuousCase}
                 removeSeatCallback={removeSeatCallback}
                 rows={seats}
-                maxReservableSeats={3}
+                maxReservableSeats={10}
                 visible
                 selectedByDefault
                 loading={loading}
                 tooltipProps={{ multiline: true }}
                 continuous
             />
-        </div>
-        <Button onClick={() => {
-            const arr = [];
-            const indexes = [];
+        </Box>
+        {p.isCheckout && <Button onClick={() => {
             // @ts-ignore
             seats.forEach((row, index) => {
                 for (let i = 0; i < row.length; i++) {
@@ -76,6 +76,6 @@ export function RoomPlan(p: { seats?: any, rowLength?: number, id?: number, full
             setSeats([...seats]);
             // PlanDataService.edit(JSON.stringify({...p.fullSeats, data: JSON.stringify(seats)}), p.id!).then(() => nav("/"));
             EventDataService.edit({ ...p.event, plan: JSON.stringify({ ...p.fullSeats, data: JSON.stringify(seats) }) }).then(() => nav("/"))
-        }} variant="contained" style={{ marginTop: 30 }}>checkout</Button>
+        }} variant="contained" style={{ marginTop: 20, }}>checkout</Button>}
     </div>
 }

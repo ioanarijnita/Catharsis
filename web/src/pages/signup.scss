@@ -47,7 +47,7 @@ li {
     margin-bottom: -16px;
 }
 
-li::before {
+.li::before {
     content: "\2022";
     font-size: 30px;
     position: relative;

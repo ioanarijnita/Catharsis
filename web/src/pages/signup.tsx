@@ -49,6 +49,16 @@ export function SignUpPage() {
                         {errors.email && errors.email.type === "required" && <ErrorHelper helperText={EmailErrors.EMPTY} />}
                         {errors.email && errors.email.type === "pattern" && <ErrorHelper helperText={EmailErrors.INVALID} />}
                         <TextField
+                            error={!!errors.name}
+                            variant="outlined"
+                            id="outlined-error-helper-text"
+                            label="Name"
+                            {...register("name", { required: true })}
+                            inputProps={{ style: { fontSize: 17 } }}
+                            style={{ marginTop: 23 }}
+                        />
+                        {errors.name && errors.name.type === "required" && <ErrorHelper helperText={"Name is required."} />}
+                        <TextField
                             error={!!errors.password}
                             label='Create Password'
                             variant="outlined"
@@ -77,8 +87,8 @@ export function SignUpPage() {
                             {!isPasswordValidationError ? "Password must be:" : ""}
                             {passwordRequirements?.map(item => <li
                                 key={item}
-                                className={requirementsValidation?.includes(item) && !isPasswordValidationError ? "main-li" :
-                                    requirementsValidation.includes(item) && isPasswordValidationError ? "error-li" : "gray-li"
+                                className={requirementsValidation?.includes(item) && !isPasswordValidationError ? "main-li li" :
+                                    requirementsValidation.includes(item) && isPasswordValidationError ? "error-li li" : "gray-li li"
                                 }
                             >{item}</li>
                             )}

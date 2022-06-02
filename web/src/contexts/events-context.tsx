@@ -26,7 +26,7 @@ export function useEventService() {
 }
 
 function useEventsService() {
-    const [eventList, setEventList] = useState<EventType[]>([]);
+    const [eventList, setEventList] = useState<EventType[]>();
 
     const getEvents = () => {
         EventDataService.findAll().then((res) => {

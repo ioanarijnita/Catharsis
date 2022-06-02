@@ -21,7 +21,8 @@ export function AdminAddPlan() {
     if (loginInfo?.email !== "admin@admin.com") return <></>;
     return (
         <div>
-            <Button variant="outlined" style={{ backgroundColor: 'black', color: 'white', textAlign: "center" }} onClick={() => navigate("/")}>GO TO MAIN PAGE</Button>
+            <Button variant="outlined" style={{ backgroundColor: 'black', color: 'white', position: "absolute", right: 50 }} onClick={() => navigate("/")}>GO TO MAIN PAGE</Button>
+            <Button variant="outlined" style={{ backgroundColor: 'black', color: 'white', position: "absolute", right: 50, top: 100 }} onClick={() => navigate("/admin")}>GO TO ADD EVENT</Button>
 
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'start', marginLeft: 50, marginTop: 50 }}>
 
@@ -65,7 +66,7 @@ export function AdminAddPlan() {
                         onChange={(e: any) => {
                             let counter = 0;
                             console.log(e.target.value)
-                            setPlan({name: plan?.name!, rows: plan?.rows!, columns: e.target.value })
+                            setPlan({ name: plan?.name!, rows: plan?.rows!, columns: e.target.value })
                             for (let i = 0; i < plan?.rows!; i++) {
                                 for (let j = 0; j < e.target.value; j++) {
                                     // @ts-ignore
@@ -94,7 +95,7 @@ export function AdminAddPlan() {
                         })
                     }} variant="contained" disabled={!rerender} style={{ marginTop: 10 }}>ADD PLAN</Button>
                 </div>
-                <div style={{ display: "flex", flexDirection: "row" }}>
+                <div style={{ display: "flex", flexDirection: "row", marginLeft: 50 }}>
                     {rerender ? <RoomPlan seats={planArray} /> : <></>}
                 </div>
             </div>

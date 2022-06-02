@@ -12,7 +12,8 @@ import { useNavigate } from "react-router-dom";
 
 export type RegInfo = {
     email: string,
-    password: string
+    password: string,
+    name: string
 }
 
 export function LoginPage() {

@@ -1,4 +1,4 @@
-import { Button, IconButton, InputAdornment, TextField } from '@mui/material';
+import { BottomNavigationAction, Button, IconButton, InputAdornment, TextField } from '@mui/material';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/header';
 import SearchIcon from '@mui/icons-material/Search';
@@ -10,19 +10,19 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import moment from 'moment';
 import Carousel from 'react-material-ui-carousel/dist/components/Carousel';
+import './calendar.scss';
 
 export function MainPage() {
     const { getEvents, eventList } = useEventService();
     const [value, onChange] = useState(new Date());
     const { register, handleSubmit, getValues } = useForm<{ searchInput: string }>();
     const nav = useNavigate();
-
     useEffect(() => {
         getEvents();
     }, [])
 
     const onSubmit = () => {
-        const data = eventList.filter(event => event.title.toLocaleLowerCase().includes(getValues("searchInput").toLocaleLowerCase()));
+        const data = eventList?.filter(event => event.title.toLocaleLowerCase().includes(getValues("searchInput").toLocaleLowerCase()));
         nav("/events", { state: data });
     }
 
@@ -41,10 +41,10 @@ export function MainPage() {
         <div>
             <Header />
             <br /><br /><br />
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <TextField
-                        style={{ width: 400 }}
+                        style={{ width: 800 }}
                         label="Search by events"
                         {...register("searchInput")}
                         InputProps={{
@@ -58,15 +58,16 @@ export function MainPage() {
                         }}
                     />
                 </form>
+                <Button onClick={() => {
+                    const data = eventList?.filter(event => moment(moment(event.date).format("YYYY-MM-DD")).isSame(moment(moment(value).format("YYYY-MM-DD"))));
+                    nav("/events", { state: data })
+                }} variant="contained" style={{ width: 150, }}>CHECK EVENTS</Button>
             </div>
             <div style={{ padding: 50, display: "flex", flexDirection: "column", marginTop: 25, borderRadius: 14, marginLeft: 25 }}>
                 <div style={{ display: "flex", flexDirection: "row" }}>
                     <div style={{ flexDirection: "column" }}>
                         <Calendar onChange={onChange} value={value} locale="en-US" />
-                        <Button onClick={() => {
-                            const data = eventList.filter(event => moment(moment(event.date).format("YYYY-MM-DD")).isSame(moment(moment(value).format("YYYY-MM-DD"))));
-                            nav("/events", { state: data })
-                        }} variant="contained" style={{ width: 150, marginTop: 15 }}>CHECK EVENTS</Button>
+
                     </div>
                     <div style={{ width: "100%", textAlign: "center" }}>
                         <Carousel>
