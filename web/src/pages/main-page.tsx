@@ -28,13 +28,13 @@ export function MainPage() {
 
     var items = [
         {
-            src1: "./logo192.png",
+            src1: "./hamlet.jpg",
         },
         {
-            src1: "./logo192.png",
+            src1: "./poppins.png",
         },
         {
-            src1: "./logo192.png",
+            src1: "./karamazov.png",
         }
     ]
     return (
@@ -86,7 +86,7 @@ export function MainPage() {
 function Item(props: { item: { src1: string }; }) {
     return (
         <div>
-            <img src={props.item.src1} style={{ width: 250, height: 300 }} />
+            <img src={props.item.src1} style={{ width: 450, height: 300, borderRadius: 10 }} />
         </div>
     )
 }
