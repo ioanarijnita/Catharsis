@@ -25,6 +25,24 @@ Project was created using the following:
 ![_alt_text_](https://img.shields.io/badge/NodeJS-v12.0.0-339933?style=or-the-badge&logo=nodedotjs&color=for-the-badge=#000000) 
 ![_alt_text_](https://img.shields.io/badge/Mysql-v8.0-4479A1?style=or-the-badge&logo=Mysql)
 
+## Libraries used
+
+### Front-End
+
+- Material UI
+- Axios
+- Date FNS & Moment
+- node-sass
+- react-calendar
+- react router
+- react-seat-picker
+
+### Back-End
+
+- Express
+- Sequelize
+- bcryptjs
+
 ## Wireframe
 
 https://www.figma.com/file/gBYdw4LE6SLs8G8E1hGTFZ/Single-Event-Page?node-id=0%3A1
