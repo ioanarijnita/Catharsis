@@ -14,6 +14,7 @@ exports.create = (req, res) => {
     const user = {
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync()),
+        name: req.body.name
     };
 
     User.create(user)

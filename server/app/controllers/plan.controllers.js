@@ -1,51 +1,40 @@
 const db = require("../models");
-const Event = db.events;
-const Op = db.Sequelize.Op;
+const Plan = db.plan;
 
 exports.create = (req, res) => {
-    if (!req.body.title) {
+    if (!req.body.data) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
         return;
     }
 
-    const event = {
-        title: req.body.title,
-        reviewsCount: req.body.reviewsCount,
-        description: req.body.description,
-        price: req.body.price,
-        image: req.body.image,
+    const user = {
+        data: req.body.data,
         id: req.body.id,
-        location: req.body.location,
-        date: req.body.date,
-        additionalInformation: req.body.additionalInformation,
-        runningTime: req.body.runningTime,
-        venueInformation: req.body.venueInformation,
-        reviews: req.body.reviews,
-        rating: req.body.rating,
-        plan: req.body.plan
+        name: req.body.name
     };
 
-    Event.create(event)
+    Plan.create(user)
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the Event."
+                message: err.message || "Some error occurred while creating the User."
             });
         });
 };
 
+
 exports.findAll = (req, res) => {
-    Event.findAll()
+    Plan.findAll()
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while retrieving events."
+                message: err.message || "Some error occurred while retrieving users."
             });
         });
 };
@@ -53,7 +42,7 @@ exports.findAll = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
 
-    Event.update(req.body, {
+    Plan.update(req.body, {
             where: { id: id }
         })
         .then(num => {
@@ -63,7 +52,7 @@ exports.update = (req, res) => {
                 });
             } else {
                 res.send({
-                    message: `Cannot update Women with id=${id}.Req body is : ${req.params.revies} Maybe Women was not found or req.body is empty!`
+                    message: `Cannot update Women with id=${id}.Req body is : ${req.params.isReserved} or ${req.params.is} Maybe Women was not found or req.body is empty!`
                 });
             }
         })

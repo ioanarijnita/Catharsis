@@ -39,6 +39,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         rating: {
             type: Sequelize.INTEGER
+        },
+        plan: {
+            type: Sequelize.STRING
         }
     });
 
